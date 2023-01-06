@@ -1,6 +1,6 @@
 # Docker Tutorial
 
-This tutorial will walk you through using Docker for assigned projects in CS 4730: Distributed Systems.
+This tutorial will walk you through using Docker for assigned projects in CS 4730: Distributed Systems. Credit for most of this write-up goes to [Asad Salman](https://github.com/asadsalman/docker-tutorial).
 
 ## What is Docker?
 
