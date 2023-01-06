@@ -146,7 +146,3 @@ netcat -v first 3000
 ```
 
 At this point, both containers should show that you have successfully established a TCP connection. Anything you type now in the `second` container’s shell, followed by the enter/return key, will be echoed on the other side, indicating a successful TCP conneciton.
-
-### Acknowledgements
-
-*********Credit for most of this write-up goes to [Asad Salman](https://github.com/asadsalman/docker-tutorial).*
