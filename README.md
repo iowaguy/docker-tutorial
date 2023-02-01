@@ -146,3 +146,13 @@ netcat -v first 3000
 ```
 
 At this point, both containers should show that you have successfully established a TCP connection. Anything you type now in the `second` container’s shell, followed by the enter/return key, will be echoed on the other side, indicating a successful TCP conneciton.
+
+# Troubleshooting
+If you are seeing the error `No address associated with hostname`, it may be caused by a DNS issue. Try adding a well-known public resolver like Google's `8.8.8.8` or Cloudflare's `1.1.1.1` to `~/.docker/daemon.json` or `/etc/docker/dameon.json`. For example,
+
+```json
+{
+  "dns": ["10.0.0.2", "1.1.1.1"]
+}
+```
+Note that you may need to restart the Docker service if you are running one.
