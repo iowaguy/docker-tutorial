@@ -147,6 +147,54 @@ netcat -v first 3000
 
 At this point, both containers should show that you have successfully established a TCP connection. Anything you type now in the `second` container’s shell, followed by the enter/return key, will be echoed on the other side, indicating a successful TCP conneciton.
 
+# Docker Compose
+[Docker Compose](https://docs.docker.com/compose/) is a container orchestrator
+for Docker. Installation instructions can be found
+[here](https://docs.docker.com/compose/install/). Docker Compose lets you
+statically define attributes and arguments for your containers in a YAML
+configuration file. For example, the following connects two containers over a
+bridge network, and then has each of them print a short message before exiting.
+
+``` yaml
+services:
+  one:
+    image: dockernetwork
+    networks:
+      - mynetwork
+    hostname: "host1"
+    command: echo "hello, host2"
+
+  two:
+    image: dockernetwork
+    networks:
+      - mynetwork
+    hostname: "host2"
+    command: echo "hello, host1"
+
+networks:
+  # The presence of these objects is sufficient to define them
+  mynetwork: {}
+```
+
+To run Docker Compose, you can use the following
+
+``` bash
+docker compose -f <COMPOSE_FILENAME.yml> up
+```
+
+Which, for the above compose file would yield the following output
+
+``` text
+[+] Running 2/2
+ ⠿ Container lab3-two-1  Recreated                                                                                                                                                                                                        8.7s
+ ⠿ Container lab3-one-1  Recreated                                                                                                                                                                                                       19.0s
+Attaching to lab3-one-1, lab3-two-1
+lab3-one-1  | hello, host2
+lab3-two-1  | hello, host1
+lab3-one-1 exited with code 0
+lab3-two-1 exited with code 0
+```
+
 # Troubleshooting
 If you are seeing the error `No address associated with hostname`, it may be caused by a DNS issue. Try adding a well-known public resolver like Google's `8.8.8.8` or Cloudflare's `1.1.1.1` to `~/.docker/daemon.json` or `/etc/docker/dameon.json`. For example,
 
@@ -156,3 +204,7 @@ If you are seeing the error `No address associated with hostname`, it may be cau
 }
 ```
 Note that you may need to restart the Docker service if you are running one.
+
+# Acknowledgements
+
+*********This write-up was heavily adapted from [Asad Salman's](https://github.com/asadsalman/docker-tutorial).*
