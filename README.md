@@ -40,7 +40,7 @@ Save and close `hello.c`.
 Next, open `Dockerfile` in your editor and copy in the following:
 
 ```docker
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 RUN apt-get update
 RUN apt-get install -y gcc
@@ -101,7 +101,7 @@ docker network create --driver bridge mynetwork
 Now to create a new Dockerfile that will let us play around with networking between containers:
 
 ```docker
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 RUN apt-get update
 RUN apt-get install -y netcat iputils-ping
